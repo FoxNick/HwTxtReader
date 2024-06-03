@@ -10,6 +10,7 @@ import com.bifan.txtreaderlib.interfaces.ITxtTask;
 import com.bifan.txtreaderlib.main.ParagraphData;
 import com.bifan.txtreaderlib.main.TxtReaderContext;
 import com.bifan.txtreaderlib.utils.ELogger;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -65,7 +66,7 @@ public class FileDataLoadTask implements ITxtTask {
                 String data;
                 int index = 0;
                 int chapterIndex = 0;
-                while ((data = bufferedReader.readLine()) != null) {
+                while ((data = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                     if (data.length() > 0) {
                         IChapter chapter = compileChapter(data, paragraphData.getCharNum(), index, chapterIndex);
                         paragraphData.addParagraph(data);
