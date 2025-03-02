@@ -527,7 +527,9 @@ public abstract class TxtReaderBaseView extends View implements GestureDetector.
     protected void onPressSelectText(MotionEvent e) {
         TxtChar selectedChar = findCharByPosition(e.getX(), e.getY());
         if(selectedChar!=null)
-        ELogger.log("onPressSelectText",selectedChar.toString());
+        {
+            ELogger.log("onPressSelectText",selectedChar.toString());
+        }
         else
             ELogger.log("onPressSelectText","is null"+e.getX()+","+e.getY());
         if (selectedChar != null) {
